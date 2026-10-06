@@ -1,0 +1,918 @@
+[
+ {
+  "id": "advanced_object_search",
+  "nameEn": "Advanced Object Search (dynamic)",
+  "nameEs": "Búsqueda Avanzada Dinámica",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Permite efectuar rastreos sumamente detallados de objetos y movimientos en grabaciones o en vivo, combinando filtros geométricos, temporales y descriptivos en simultáneo.",
+  "useCases": [
+   "Investigaciones forenses complejas donde se requiere aislar un objetivo específico cruzando un gran volumen de condiciones."
+  ],
+  "hardwareNotes": "Herramienta clave para investigaciones forenses; no se detallan requisitos específicos de hardware en el Manual más allá de los generales de la suite.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "max_confidence",
+   "confidence_aggregation_type",
+   "min_height",
+   "max_height",
+   "height_aggregation_type",
+   "multi_attribute_filter",
+   "attributes_aggregation_type",
+   "start_filter",
+   "min_stop_duration",
+   "max_move_pixels",
+   "stop_filter",
+   "appear_filter",
+   "moving_filter",
+   "stationary_filter",
+   "sampling_filter",
+   "zone_filter_without_sampling",
+   "max_parallel_tracks",
+   "aggregation_interval_length_ms",
+   "join_detections",
+   "alarm_integration",
+   "add_attribute",
+   "gender",
+   "fallen",
+   "hands_up",
+   "on_the_phone_2class",
+   "on_the_phone_3class",
+   "ppe_vest",
+   "color",
+   "face_mask",
+   "ppe_helmet",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled",
+   "same_track_enable_disable"
+  ],
+  "aliasesEs": [
+   "búsqueda avanzada",
+   "forense",
+   "investigación"
+  ],
+  "aliasesEn": [
+   "advanced search",
+   "dynamic search"
+  ],
+  "manualSection": "Manual 6.3 A",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "crowd_detection",
+  "nameEn": "Crowd Detection",
+  "nameEs": "Detección de multitudes",
+  "category": "Seguridad de Personas",
+  "descriptionEs": "Analítica especializada en identificar concentraciones masivas de personas que superan un límite de densidad en un área vigilada.",
+  "useCases": [
+   "Control de aforos y prevención en eventos o espacios públicos.",
+   "Aglomeraciones y eventos públicos en la vía urbana."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "min_confidence",
+   "zone_filter_without_sampling",
+   "threshold_crowd",
+   "crowd_cooldown_filter",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "aglomeración",
+   "aglomeraciones",
+   "aforo",
+   "multitud",
+   "gente amontonada"
+  ],
+  "aliasesEn": [
+   "crowd",
+   "crowding"
+  ],
+  "manualSection": "Manual 6.2 A",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "free_text_search",
+  "nameEn": "Free Text Search",
+  "nameEs": "Búsqueda de Texto Libre",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Permite buscar objetos o escenas describiéndolos en lenguaje natural mediante texto, en lugar de filtros estructurados.",
+  "useCases": [
+   "Búsquedas exploratorias rápidas cuando el operador no conoce con precisión los atributos técnicos del objeto buscado."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "start_time_earliest",
+   "end_time_earliest",
+   "start_time_set_custom",
+   "end_time_set_custom",
+   "object_types",
+   "free_text_search_param",
+   "top_k",
+   "quick_settings",
+   "live_mode"
+  ],
+  "aliasesEs": [
+   "texto libre",
+   "buscar con texto"
+  ],
+  "aliasesEn": [
+   "text search"
+  ],
+  "manualSection": "Manual 6.3 C",
+  "forenseOnly": true,
+  "reviewNotes": [
+   "Figura como solo forense, pero el glosario lista modo en vivo, alarma o webhook para esta analítica. Revisar si corresponde."
+  ]
+ },
+ {
+  "id": "free_text_search_threshold",
+  "nameEn": "Free Text Search with threshold",
+  "nameEs": "Búsqueda de Texto Libre con Umbral",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Búsqueda por texto en lenguaje natural con límite estricto de similitud, para obtener resultados de mayor precisión que la búsqueda de texto libre simple.",
+  "useCases": [
+   "Reportes de alta precisión donde se necesita descartar coincidencias débiles o poco relevantes."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "min_height",
+   "max_height",
+   "free_text_search_param",
+   "similarity_filter",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "texto libre con umbral",
+   "similitud"
+  ],
+  "aliasesEn": [
+   "text search threshold"
+  ],
+  "manualSection": "Manual 6.3 D",
+  "forenseOnly": true,
+  "reviewNotes": [
+   "Figura como solo forense, pero el glosario lista modo en vivo, alarma o webhook para esta analítica. Revisar si corresponde."
+  ]
+ },
+ {
+  "id": "hazardous_area_detection",
+  "nameEn": "Hazardous Area Detection",
+  "nameEs": "Detección de intrusión en zona de peligro",
+  "category": "Seguridad de Personas",
+  "descriptionEs": "Analítica de seguridad industrial que identifica la presencia de personas en sectores críticos o áreas restringidas que comprometen su integridad física, alertando sobre la incursión no autorizada.",
+  "useCases": [
+   "Obras de infraestructura urbana, zonas ferroviarias, plantas industriales municipales o perímetros con maquinaria de gran porte en movimiento.",
+   "Requiere combinar zonas de exclusión (ROI)."
+  ],
+  "hardwareNotes": "Dibujar un polígono ROI que cubra el área de alto riesgo. Ajustar intervalo de muestreo y volumen máximo de trayectorias paralelas.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "min_confidence",
+   "appear_filter",
+   "minimum_track_duration",
+   "after_out_of_zone_fire_again",
+   "use_bottom_reference_point",
+   "max_parallel_tracks",
+   "object_types",
+   "sampling_filter",
+   "sampling_interval",
+   "join_detections",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "zona de peligro",
+   "zona prohibida",
+   "área peligrosa",
+   "intrusión"
+  ],
+  "aliasesEn": [
+   "intrusion",
+   "restricted area"
+  ],
+  "manualSection": "Manual 6.2 B",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "heatmap",
+  "nameEn": "Heatmap",
+  "nameEs": "Mapa de Calor",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Representación visual en gradiente de color que muestra las zonas con mayor concentración de tráfico o tránsito de personas durante un período acumulado.",
+  "useCases": [
+   "Análisis de flujo comercial en tiendas.",
+   "Identificación de cuellos de botella en pasillos o corredores urbanos."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "multi_attribute_filter",
+   "attributes_aggregation_type",
+   "sampling_filter",
+   "sampling_interval",
+   "max_parallel_tracks",
+   "add_attribute",
+   "gender",
+   "fallen",
+   "hands_up",
+   "on_the_phone_2class",
+   "on_the_phone_3class",
+   "ppe_vest",
+   "color",
+   "face_mask",
+   "ppe_helmet",
+   "quick_settings",
+   "live_mode"
+  ],
+  "aliasesEs": [
+   "mapa de calor",
+   "zonas de mayor permanencia"
+  ],
+  "aliasesEn": [
+   "heat map"
+  ],
+  "manualSection": "Manual 6.3 E",
+  "forenseOnly": true,
+  "reviewNotes": [
+   "Figura como solo forense, pero el glosario lista modo en vivo, alarma o webhook para esta analítica. Revisar si corresponde.",
+   "El manual indica muestreo por defecto de 1 s; el glosario, 5 s. Se usa el glosario (el valor puede variar por analítica)."
+  ]
+ },
+ {
+  "id": "line_crossing_detection",
+  "nameEn": "Line Crossing Detection",
+  "nameEs": "Detección de Cruce de Línea Virtual",
+  "category": "Control de Perímetros y Cruces",
+  "descriptionEs": "Detecta cuando un objeto o persona cruza una línea digital preconfigurada en la pantalla.",
+  "useCases": [
+   "Controlar el flujo de tránsito en accesos y egresos municipales.",
+   "Detectar ingresos ilegales a zonas peatonales.",
+   "Alertar de inmediato cuando un vehículo circula a contramano."
+  ],
+  "hardwareNotes": "Requiere trazar una línea virtual sobre la calzada o perímetro; recomendable cámara fija para mantener estable la geometría de la línea.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "multi_attribute_filter",
+   "attributes_aggregation_type",
+   "line_cross_filter",
+   "movement_direction",
+   "ignore_duplicate_crossings",
+   "use_bottom_reference_point",
+   "max_parallel_tracks",
+   "alarm_integration",
+   "add_attribute",
+   "gender",
+   "fallen",
+   "hands_up",
+   "on_the_phone_2class",
+   "on_the_phone_3class",
+   "ppe_vest",
+   "color",
+   "face_mask",
+   "ppe_helmet",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "cruce de línea",
+   "contramano",
+   "línea virtual"
+  ],
+  "aliasesEn": [
+   "line crossing",
+   "wrong way",
+   "tripwire"
+  ],
+  "manualSection": "Manual 6.1 A",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "loitering_detection",
+  "nameEn": "Loitering Detection",
+  "nameEs": "Monitoreo de merodeo",
+  "category": "Seguridad de Personas",
+  "descriptionEs": "Alerta de forma inmediata cuando personas u objetos permanecen quietos o dando vueltas en un sector específico por un tiempo mayor al permitido.",
+  "useCases": [
+   "Prevención de robos en cajeros automáticos.",
+   "Perímetros de entidades bancarias, paradas de transporte público alejadas o fachadas de edificios gubernamentales."
+  ],
+  "hardwareNotes": "Trazar el polígono ROI en la zona de interés (se dibuja en el filtro de aparición). Cámara fija.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "appear_filter",
+   "minimum_track_duration",
+   "after_out_of_zone_fire_again",
+   "use_bottom_reference_point",
+   "max_parallel_tracks",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "detección de merodeo",
+   "merodear",
+   "permanencia"
+  ],
+  "aliasesEn": [
+   "loitering"
+  ],
+  "manualSection": "Manual 6.2 C",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "measure_vehicle_speed",
+  "nameEn": "Measure Vehicle Speed",
+  "nameEs": "Medición de Velocidad de Vehículo",
+  "category": "Gestión de Tráfico y Control Vehicular",
+  "descriptionEs": "Analítica basada en visión artificial para calcular la velocidad de desplazamiento de automotores mediante la distancia física calibrada entre dos líneas de cruce.",
+  "useCases": [
+   "Control de tráfico urbano y detección de exceso de velocidad en autopistas o complejos industriales."
+  ],
+  "hardwareNotes": "Exige cámara fija (no compatible con PTZ en movimiento). Altura mínima recomendada de vehículo: 32x32 px.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "max_confidence",
+   "confidence_aggregation_type",
+   "min_height",
+   "max_height",
+   "height_aggregation_type",
+   "multi_attribute_filter",
+   "color",
+   "emergency_vehicle",
+   "attributes_aggregation_type",
+   "line_cross_filter",
+   "movement_direction",
+   "ignore_duplicate_crossings",
+   "use_bottom_reference_point",
+   "max_parallel_tracks",
+   "aggregation_interval_length_ms",
+   "speed_calculation",
+   "distance_meters",
+   "speed_limit_kmh",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "velocidad",
+   "radar",
+   "exceso de velocidad"
+  ],
+  "aliasesEn": [
+   "speed",
+   "speeding"
+  ],
+  "manualSection": "Manual 6.5 D",
+  "forenseOnly": false,
+  "reviewNotes": [],
+  "paramDefaults": {
+   "min_height": "25"
+  }
+ },
+ {
+  "id": "multiple_crossline_counting",
+  "nameEn": "Multiple Crossline Counting",
+  "nameEs": "Conteo de Cruce Secuencial",
+  "category": "Control de Perímetros y Cruces",
+  "descriptionEs": "Contabiliza los elementos que cruzan de forma sucesiva y en un orden preestablecido varias líneas virtuales en la misma escena.",
+  "useCases": [
+   "Entornos de tránsito complejos o nodos logísticos urbanos donde se requiere verificar que los vehículos sigan un recorrido obligatorio específico (ej. Línea A → Línea B)."
+  ],
+  "hardwareNotes": "Requiere cámara fija (no compatible con PTZ en movimiento salvo posición bloqueada).",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "line_cross_filter",
+   "movement_direction",
+   "ignore_duplicate_crossings",
+   "use_bottom_reference_point",
+   "max_parallel_tracks",
+   "join_detections",
+   "max_time_distance_ms",
+   "join_order",
+   "time_based_segmentation",
+   "segmentation_length_ms",
+   "external_integrations",
+   "webhook_enabled",
+   "quick_settings",
+   "live_mode"
+  ],
+  "aliasesEs": [
+   "conteo de entradas y salidas",
+   "cruce secuencial"
+  ],
+  "aliasesEn": [
+   "crossline",
+   "people counting"
+  ],
+  "manualSection": "Manual 6.1 B",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "near_miss_detection",
+  "nameEn": "Near Miss Detection",
+  "nameEs": "Detección de Proximidad Crítica / Cuasi Accidente",
+  "category": "Seguridad de Personas",
+  "descriptionEs": "Registra situaciones de cercanía peligrosa e inminente entre personas y vehículos en constante movimiento.",
+  "useCases": [
+   "Auditoría de seguridad vial en sendas peatonales conflictivas.",
+   "Pasillos de depósitos logísticos con tránsito de autoelevadores o intersecciones viales de alta siniestralidad."
+  ],
+  "hardwareNotes": "En el Filtro 1 se define el perfil de personas (ROI y confianza); en el Filtro 2 el perfil del vehículo, activando el Moving Filter para el análisis dinámico.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "sampling_filter",
+   "sampling_interval",
+   "max_parallel_tracks",
+   "moving_filter",
+   "sampling_interval_moving_filter",
+   "min_move",
+   "join_detections",
+   "max_time_distance_ms",
+   "max_relative_distance",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "cuasi accidente",
+   "proximidad crítica"
+  ],
+  "aliasesEn": [
+   "near miss"
+  ],
+  "manualSection": "Manual 6.2 D",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "object_counting",
+  "nameEn": "Object Counting",
+  "nameEs": "Conteo de Objetos",
+  "category": "Gestión de Tráfico y Control Vehicular",
+  "descriptionEs": "Calcula el volumen de objetos que atraviesan o están presentes en un área durante ventanas de tiempo consolidadas.",
+  "useCases": [
+   "Medición de aforo o densidad de tráfico."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "sampling_filter",
+   "sampling_interval",
+   "time_based_segmentation",
+   "segmentation_length_ms",
+   "external_integrations",
+   "webhook_enabled",
+   "quick_settings",
+   "live_mode"
+  ],
+  "aliasesEs": [
+   "conteo",
+   "contar objetos",
+   "ocupación",
+   "aforo"
+  ],
+  "aliasesEn": [
+   "counting",
+   "occupancy"
+  ],
+  "manualSection": "Manual 6.3 F",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "object_detection",
+  "nameEn": "Object Detection",
+  "nameEs": "Detección de Objetos",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Detección general de objetos en la escena, aplicando filtros de atributos múltiples y muestreo para optimizar el procesamiento.",
+  "useCases": [
+   "Base para relevamiento general de actividad en una cámara antes de definir una regla más específica."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "multi_attribute_filter",
+   "attributes_aggregation_type",
+   "sampling_filter",
+   "sampling_interval",
+   "max_parallel_tracks",
+   "alarm_integration",
+   "add_attribute",
+   "gender",
+   "fallen",
+   "hands_up",
+   "on_the_phone_2class",
+   "on_the_phone_3class",
+   "ppe_vest",
+   "color",
+   "face_mask",
+   "ppe_helmet",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "detección de objetos",
+   "atributos",
+   "epp"
+  ],
+  "aliasesEn": [
+   "detection",
+   "ppe"
+  ],
+  "manualSection": "Manual 6.3 B",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "object_presence_change",
+  "nameEn": "Object Presence Change",
+  "nameEs": "Cambio de Presencia de Objeto",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Detecta cambios en la presencia de un objeto dentro de una ventana de tiempo (aparición o desaparición) respecto a un umbral definido.",
+  "useCases": [],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "object_presence_change_window_length",
+   "object_presence_change_threshold",
+   "object_presence_change_direction",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "aparece",
+   "desaparece",
+   "aparición"
+  ],
+  "aliasesEn": [
+   "appeared",
+   "disappeared"
+  ],
+  "manualSection": "Manual 6.4 B",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "object_presence_absence_another",
+  "nameEn": "Object Presence with Absence of Another",
+  "nameEs": "Presencia de Objeto con Ausencia de Otro",
+  "category": "Búsqueda y Detección General",
+  "descriptionEs": "Genera una alerta cuando se detecta la presencia de un objeto primario junto con la ausencia de un objeto secundario esperado.",
+  "useCases": [
+   "Auditoría en logística (ej. camión presente sin operario acompañante)."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_presence_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "max_parallel_tracks",
+   "object_absence_filter",
+   "sampling_filter",
+   "sampling_interval",
+   "object_absence",
+   "object_absence_window_length_ms",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "presencia con ausencia",
+   "sin dueño",
+   "sin custodia"
+  ],
+  "aliasesEn": [
+   "presence absence",
+   "unattended"
+  ],
+  "manualSection": "Manual 6.4 C",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "object_removal_detection",
+  "nameEn": "Object Removal Detection",
+  "nameEs": "Detección de remoción de objetos",
+  "category": "Gestión y Protección de Activos",
+  "descriptionEs": "Genera un evento en tiempo real cuando un elemento estático predefinido desaparece de su ubicación asignada.",
+  "useCases": [
+   "Salvaguarda de patrimonio histórico, obras de arte en museos públicos, mobiliario urbano crítico o equipos tecnológicos de alto valor."
+  ],
+  "hardwareNotes": "Dibujar el polígono ROI ajustado a la silueta del objeto custodiado / centrado en el perímetro fijo de la infraestructura a proteger.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "sampling_filter",
+   "sampling_interval",
+   "max_parallel_tracks",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "remoción",
+   "robo de objeto",
+   "objeto faltante"
+  ],
+  "aliasesEn": [
+   "removal"
+  ],
+  "manualSection": "Manual 6.4 A",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "started_object_detection",
+  "nameEn": "Started Object Detection",
+  "nameEs": "Detección de Objeto Iniciado (en movimiento)",
+  "category": "Gestión de Tráfico y Control Vehicular",
+  "descriptionEs": "Detecta cuando un objeto que estaba detenido (dentro de una zona) inicia la marcha o el movimiento.",
+  "useCases": [
+   "Auditar de forma automática embotellamientos repentinos o detenciones que se resuelven, en túneles urbanos o autopistas de acceso rápido."
+  ],
+  "hardwareNotes": "Configurar la frecuencia de muestreo en segundos para capturar con nitidez la transición del estado de movimiento.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "multi_attribute_filter",
+   "attributes_aggregation_type",
+   "start_filter",
+   "min_stop_duration",
+   "max_move_pixels",
+   "max_parallel_tracks",
+   "alarm_integration",
+   "add_attribute",
+   "gender",
+   "fallen",
+   "hands_up",
+   "on_the_phone_2class",
+   "on_the_phone_3class",
+   "ppe_vest",
+   "color",
+   "face_mask",
+   "ppe_helmet",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "arranque",
+   "inicio de marcha",
+   "vehículo que arranca"
+  ],
+  "aliasesEn": [
+   "started",
+   "moving"
+  ],
+  "manualSection": "Manual 6.5 A",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "stopped_object_detection",
+  "nameEn": "Stopped Object Detection",
+  "nameEs": "Detección de Objeto Detenido",
+  "category": "Gestión de Tráfico y Control Vehicular",
+  "descriptionEs": "Detecta cuando un vehículo u objeto en circulación se detiene por completo en la traza pública.",
+  "useCases": [
+   "Auditar de forma automática la presencia de vehículos mal estacionados en carriles exclusivos de colectivos o detenciones peligrosas en autopistas."
+  ],
+  "hardwareNotes": "Configurar la frecuencia de muestreo en segundos para capturar con nitidez la transición del estado de movimiento.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "multi_attribute_filter",
+   "attributes_aggregation_type",
+   "stop_filter",
+   "min_stop_duration",
+   "max_move_pixels",
+   "max_parallel_tracks",
+   "alarm_integration",
+   "add_attribute",
+   "gender",
+   "fallen",
+   "hands_up",
+   "on_the_phone_2class",
+   "on_the_phone_3class",
+   "ppe_vest",
+   "color",
+   "face_mask",
+   "ppe_helmet",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "detenido",
+   "parado",
+   "estacionado"
+  ],
+  "aliasesEn": [
+   "stopped",
+   "parked"
+  ],
+  "manualSection": "Manual 6.5 A",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "tailgating_detection",
+  "nameEn": "Tailgating Detection",
+  "nameEs": "Detección de Proximidad Indebida (\"Pegado\")",
+  "category": "Control de Perímetros y Cruces",
+  "descriptionEs": "Detecta con rapidez cuando un vehículo avanza pegado de forma indebida e inmediatamente detrás de otro al momento de atravesar un punto de validación perimetral.",
+  "useCases": [
+   "Optimizar el control en peajes municipales, barreras automatizadas de accesos restringidos o pórticos de seguridad, evitando filtraciones ilegales de vehículos sin credenciales."
+  ],
+  "hardwareNotes": null,
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "line_cross_filter",
+   "movement_direction",
+   "use_bottom_reference_point",
+   "join_detections",
+   "max_time_distance_ms",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "aliasesEs": [
+   "pegado",
+   "proximidad indebida",
+   "colado"
+  ],
+  "aliasesEn": [
+   "tailgating"
+  ],
+  "manualSection": "Manual 6.5 B",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "traffic_counting",
+  "nameEn": "Traffic Counting",
+  "nameEs": "Conteo e Indicadores de Tránsito",
+  "category": "Gestión de Tráfico y Control Vehicular",
+  "descriptionEs": "Clasifica y cuenta de manera automatizada los rodados que atraviesan líneas de tránsito virtuales en ventanas fijas de tiempo.",
+  "useCases": [
+   "Recopilar datos estadísticos viales para planificación urbana, sincronización de redes de semáforos o evaluación de flujos en picos horarios."
+  ],
+  "hardwareNotes": "Dibujar el polígono ROI que encierra la arteria vial y la línea de corte.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "line_cross_filter",
+   "movement_direction",
+   "use_bottom_reference_point",
+   "time_based_segmentation",
+   "segmentation_length_ms",
+   "external_integrations",
+   "webhook_enabled",
+   "quick_settings",
+   "live_mode"
+  ],
+  "aliasesEs": [
+   "conteo de vehículos",
+   "tránsito",
+   "aforo vehicular"
+  ],
+  "aliasesEn": [
+   "traffic count"
+  ],
+  "manualSection": "Manual 6.5 C",
+  "forenseOnly": false,
+  "reviewNotes": []
+ },
+ {
+  "id": "object_taken_detection",
+  "nameEn": "Object Taken",
+  "nameEs": "Objeto sustraído",
+  "category": "Gestión y Protección de Activos",
+  "descriptionEs": "Alerta cuando un bien fijo es sustraído de su lugar. La salida puede informar \"desaparecido\" o \"última vez visto\".",
+  "useCases": [
+   "Control de equipamiento crítico urbano, terminales de cobro automático o tótems de seguridad ciudadana en la vía pública."
+  ],
+  "hardwareNotes": "Dibujar el polígono ROI ajustado a la silueta del objeto custodiado / centrado en el perímetro fijo de la infraestructura a proteger.",
+  "parameters": [
+   "object_detection_filter",
+   "time_interval",
+   "object_types",
+   "min_confidence",
+   "sampling_filter",
+   "sampling_interval",
+   "max_parallel_tracks",
+   "object_taken",
+   "object_taken_window_length_ms",
+   "output_type",
+   "alarm_integration",
+   "quick_settings",
+   "live_mode",
+   "cooldown_seconds",
+   "webhook_enabled"
+  ],
+  "reviewNotes": [
+   "Separada de Remoción de objetos según tu indicación. Confirmar qué parámetros corresponden a cada una."
+  ],
+  "aliasesEs": [
+   "sustracción",
+   "robo",
+   "objeto robado"
+  ],
+  "aliasesEn": [
+   "taken",
+   "stolen"
+  ],
+  "manualSection": "Manual 6.4 A",
+  "forenseOnly": false
+ }
+]

@@ -1,0 +1,758 @@
+{
+ "common": [
+  {
+   "label": "Cámara",
+   "value": "Fija. Una PTZ en movimiento no sirve para dibujar zonas (ROI)",
+   "valueSource": "manual"
+  },
+  {
+   "label": "FPS del stream",
+   "value": "4 a 8: más no mejora la detección y gasta ancho de banda",
+   "valueSource": "manual"
+  },
+  {
+   "label": "Tamaño mínimo en pantalla",
+   "value": "Bultos 80×80 px; vehículos 32×32 px",
+   "valueSource": "manual"
+  },
+  {
+   "label": "Antes de enviar al Centro de Control",
+   "value": "Probar en modo local para no saturar a los operadores con falsas alarmas",
+   "valueSource": "manual"
+  },
+  {
+   "label": "Confianza mínima",
+   "value": "0,5 como punto de partida; subir si hay falsos positivos",
+   "valueSource": "propuesta"
+  },
+  {
+   "label": "Integración de alarma",
+   "value": "Habilitarla si se quiere alerta en el Centro de Control",
+   "valueSource": "default"
+  },
+  {
+   "label": "Tiempo de enfriamiento",
+   "value": "10 s por defecto; en cada situación se indica si conviene otro valor",
+   "valueSource": "default"
+  }
+ ],
+ "items": [
+  {
+   "id": "basura_desborde_contenedor",
+   "titleEs": "Basura: desborde de contenedor",
+   "titleEn": "Overflowing trash container",
+   "category": "Residuos y espacio público",
+   "descriptionEs": "Detectar que se acumulan bolsas o residuos alrededor de un contenedor fijo.",
+   "keywordsEs": [
+    "tacho desbordado",
+    "contenedor lleno",
+    "residuos",
+    "basurero",
+    "bolsas de basura"
+   ],
+   "keywordsEn": [
+    "trash overflow",
+    "garbage bin",
+    "waste container",
+    "dumpster"
+   ],
+   "certainty": "baja",
+   "certaintyNote": "No existe una clase \"residuos\" ni \"desborde\": se aproxima con presencia de objetos alrededor de un punto fijo.",
+   "recommended": [
+    {
+     "analyticId": "object_presence_change",
+     "role": "principal",
+     "note": "",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Otro",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_presence_change_direction",
+       "value": "Apareció (appeared)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_presence_change_window_length",
+       "value": "2000 ms",
+       "valueSource": "default"
+      },
+      {
+       "id": "object_presence_change_threshold",
+       "value": "Calibrar con video de prueba (sin valor de referencia)",
+       "valueSource": "pendiente"
+      },
+      {
+       "label": "Zona (ROI)",
+       "value": "Polígono sobre el contenedor y su perímetro inmediato",
+       "valueSource": "manual"
+      },
+      {
+       "id": "cooldown_seconds",
+       "value": "300 s: la condición persiste y no conviene repetir la alerta cada 10 s",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "loitering_detection",
+     "role": "alternativa",
+     "note": "Sirve para objetos que permanecen quietos en la zona.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Otro",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "minimum_track_duration",
+       "value": "60000 ms (por defecto 2000): ignora a quien apoya una bolsa un instante",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "cooldown_seconds",
+       "value": "300 s",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "free_text_search_threshold",
+     "role": "verificación",
+     "note": "Solo forense: sirve para revisar grabaciones, no para alertas en tiempo real.",
+     "params": [
+      {
+       "id": "free_text_search_param",
+       "value": "overflowing trash container with garbage bags around it (máx. 80 caracteres, en inglés)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "similarity_filter",
+       "value": "Calibrar con video de prueba",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "min_height",
+       "value": "80 px",
+       "valueSource": "default"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bultos_sospechosos",
+   "titleEs": "Bultos sospechosos",
+   "titleEn": "Suspicious packages",
+   "category": "Seguridad de Personas",
+   "descriptionEs": "Detectar bolsos, mochilas o valijas que quedan sin custodia en una zona.",
+   "keywordsEs": [
+    "objeto abandonado",
+    "mochila abandonada",
+    "valija",
+    "paquete sospechoso",
+    "bolso solo"
+   ],
+   "keywordsEn": [
+    "abandoned object",
+    "unattended bag",
+    "suspicious package",
+    "left luggage"
+   ],
+   "certainty": "media",
+   "certaintyNote": "El manual menciona objetos abandonados (bolsos, mochilas, valijas) con un mínimo de 80×80 px.",
+   "recommended": [
+    {
+     "analyticId": "object_presence_absence_another",
+     "role": "principal",
+     "note": "",
+     "params": [
+      {
+       "label": "Objeto a vigilar (filtro de presencia)",
+       "value": "Otro (mochila, valija, bolsa)",
+       "valueSource": "propuesta"
+      },
+      {
+       "label": "Objeto ausente (filtro de ausencia)",
+       "value": "Persona",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_absence_window_length_ms",
+       "value": "30000 ms (por defecto 10000: un bulto sin dueño 10 s da muchas falsas alarmas)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "sampling_interval",
+       "value": "5 s",
+       "valueSource": "default"
+      },
+      {
+       "label": "Tamaño mínimo en pantalla",
+       "value": "80×80 px",
+       "valueSource": "manual"
+      },
+      {
+       "id": "cooldown_seconds",
+       "value": "60 s",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "loitering_detection",
+     "role": "alternativa",
+     "note": "Más simple de configurar: alerta si un objeto permanece en la zona.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Otro",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "minimum_track_duration",
+       "value": "30000 ms",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "cooldown_seconds",
+       "value": "60 s",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "object_presence_change",
+     "role": "complementaria",
+     "note": "Para zonas que deben estar siempre libres.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Otro",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_presence_change_direction",
+       "value": "Apareció (appeared)",
+       "valueSource": "propuesta"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "aforo",
+   "titleEs": "Aforo",
+   "titleEn": "Capacity control",
+   "category": "Seguridad de Personas",
+   "descriptionEs": "Controlar cuántas personas hay en un espacio y avisar al superar la capacidad.",
+   "keywordsEs": [
+    "capacidad",
+    "cantidad de personas",
+    "ocupación",
+    "conteo de personas",
+    "lleno"
+   ],
+   "keywordsEn": [
+    "capacity",
+    "headcount",
+    "occupancy",
+    "people counting"
+   ],
+   "certainty": "alta",
+   "certaintyNote": "El manual lo nombra como caso de uso de Conteo de objetos. Distingue la alerta por umbral en una zona del conteo por cruce de línea (7.6).",
+   "recommended": [
+    {
+     "analyticId": "crowd_detection",
+     "role": "principal",
+     "note": "Conocido: en algunos casos no se dibuja el cuadro aunque el conteo sea correcto (manual 7.7).",
+     "params": [
+      {
+       "id": "threshold_crowd",
+       "value": "La capacidad máxima del espacio (por defecto 3; admite hasta 50 personas)",
+       "valueSource": "default"
+      },
+      {
+       "id": "crowd_cooldown_filter",
+       "value": "30 s",
+       "valueSource": "default"
+      },
+      {
+       "id": "min_confidence",
+       "value": "0,5",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "zone_filter_without_sampling",
+       "value": "Polígono sobre el espacio; sin zona se usa todo el cuadro",
+       "valueSource": "manual"
+      }
+     ]
+    },
+    {
+     "analyticId": "object_counting",
+     "role": "complementaria",
+     "note": "Entrega promedio, mínimo y máximo por ventana de tiempo.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Persona",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "sampling_interval",
+       "value": "5 s",
+       "valueSource": "default"
+      },
+      {
+       "id": "segmentation_length_ms",
+       "value": "60000 ms (por defecto 5000) para reportes por minuto",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "multiple_crossline_counting",
+     "role": "alternativa",
+     "note": "Para aforos de más de 50 personas, o para contar entradas y salidas por cruce de líneas. Requiere cámara fija.",
+     "params": []
+    },
+    {
+     "analyticId": "heatmap",
+     "role": "complementaria",
+     "note": "Muestra las zonas de mayor permanencia. Solo forense: sirve para revisar grabaciones, no para alertas en tiempo real.",
+     "params": [
+      {
+       "id": "sampling_interval",
+       "value": "5 s",
+       "valueSource": "default"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "motos_sobre_vereda",
+   "titleEs": "Motos sobre vereda",
+   "titleEn": "Motorcycles on the sidewalk",
+   "category": "Tránsito y espacio público",
+   "descriptionEs": "Detectar motos que circulan o se estacionan sobre la vereda.",
+   "keywordsEs": [
+    "moto en la vereda",
+    "moto en la acera",
+    "motoquero",
+    "motos en peatonal"
+   ],
+   "keywordsEn": [
+    "motorcycle on sidewalk",
+    "bike on pavement",
+    "scooter"
+   ],
+   "certainty": "media",
+   "certaintyNote": "La clase Vehículo agrupa autos, motos, camiones y bicicletas: no distingue una moto de una bicicleta ni de un auto.",
+   "recommended": [
+    {
+     "analyticId": "hazardous_area_detection",
+     "role": "principal",
+     "note": "",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Vehículo",
+       "valueSource": "default"
+      },
+      {
+       "id": "minimum_track_duration",
+       "value": "2000 ms",
+       "valueSource": "default"
+      },
+      {
+       "id": "after_out_of_zone_fire_again",
+       "value": "Habilitado: cada moto genera un evento nuevo",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "use_bottom_reference_point",
+       "value": "Habilitado: la rueda marca la posición en el piso",
+       "valueSource": "propuesta"
+      },
+      {
+       "label": "Zona (ROI)",
+       "value": "Polígono sobre la vereda, excluyendo rampas y entradas de garaje",
+       "valueSource": "propuesta"
+      },
+      {
+       "label": "Tamaño mínimo en pantalla",
+       "value": "32×32 px (vehículos)",
+       "valueSource": "manual"
+      },
+      {
+       "id": "cooldown_seconds",
+       "value": "30 s",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "line_crossing_detection",
+     "role": "complementaria",
+     "note": "Línea trazada sobre el cordón.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Vehículo",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "movement_direction",
+       "value": "Hacia el lado de la vereda",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "use_bottom_reference_point",
+       "value": "Habilitado",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "ignore_duplicate_crossings",
+       "value": "1000 ms",
+       "valueSource": "default"
+      }
+     ]
+    },
+    {
+     "analyticId": "free_text_search_threshold",
+     "role": "verificación",
+     "note": "Solo forense: sirve para revisar grabaciones, no para alertas en tiempo real.",
+     "params": [
+      {
+       "id": "free_text_search_param",
+       "value": "motorcycle on the sidewalk (en inglés)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "similarity_filter",
+       "value": "Calibrar con video de prueba",
+       "valueSource": "propuesta"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "personas_con_gorra",
+   "titleEs": "Personas con gorra",
+   "titleEn": "People wearing caps",
+   "category": "Seguridad de Personas",
+   "descriptionEs": "Buscar personas que llevan gorra en grabaciones.",
+   "keywordsEs": [
+    "gorra",
+    "gorro",
+    "visera",
+    "cabeza cubierta"
+   ],
+   "keywordsEn": [
+    "cap",
+    "hat",
+    "baseball cap",
+    "headwear"
+   ],
+   "certainty": "baja",
+   "certaintyNote": "El filtro de multi-atributo no tiene \"gorra\". \"Casco de EPP\" es otro atributo y \"Color\" se refiere a la vestimenta. El texto libre funciona solo en inglés y puede no ser exacto (manual 7.4). No hay una opción en tiempo real.",
+   "recommended": [
+    {
+     "analyticId": "free_text_search",
+     "role": "principal",
+     "note": "Solo forense: sirve para revisar grabaciones, no para alertas en tiempo real.",
+     "params": [
+      {
+       "id": "free_text_search_param",
+       "value": "person wearing a cap (máx. 80 caracteres, en inglés)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_types",
+       "value": "Persona",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "top_k",
+       "value": "10 por defecto; subir a 30 si se revisa un día completo",
+       "valueSource": "default"
+      }
+     ]
+    },
+    {
+     "analyticId": "free_text_search_threshold",
+     "role": "alternativa",
+     "note": "Solo forense: sirve para revisar grabaciones, no para alertas en tiempo real. Conviene confirmar con el cliente para qué se usaría: los metadatos de personas se retienen 30 días (manual 7.8).",
+     "params": [
+      {
+       "id": "free_text_search_param",
+       "value": "person wearing a cap",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "min_height",
+       "value": "120 px (por defecto 80): en personas lejanas la cabeza no se distingue",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "similarity_filter",
+       "value": "Calibrar con video de prueba",
+       "valueSource": "propuesta"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "basura_en_esquina",
+   "titleEs": "Basura en una esquina",
+   "titleEn": "Garbage on a street corner",
+   "category": "Residuos y espacio público",
+   "descriptionEs": "Detectar que aparece y se acumula basura en un punto de la vía pública, sin contenedor.",
+   "keywordsEs": [
+    "basural",
+    "bolsas en la esquina",
+    "residuos en la vereda",
+    "volquete",
+    "arrojan basura"
+   ],
+   "keywordsEn": [
+    "illegal dumping",
+    "litter",
+    "garbage pile",
+    "trash on street"
+   ],
+   "certainty": "baja",
+   "certaintyNote": "Distinto del desborde de contenedor: acá se busca que aparezca acumulación en un punto. No existe una clase \"residuos\".",
+   "recommended": [
+    {
+     "analyticId": "object_presence_change",
+     "role": "principal",
+     "note": "",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Otro",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_presence_change_direction",
+       "value": "Apareció (appeared)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "object_presence_change_window_length",
+       "value": "2000 ms",
+       "valueSource": "default"
+      },
+      {
+       "label": "Zona (ROI)",
+       "value": "Polígono sobre el punto de la esquina donde se arroja",
+       "valueSource": "manual"
+      },
+      {
+       "id": "cooldown_seconds",
+       "value": "300 s",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "loitering_detection",
+     "role": "alternativa",
+     "note": "Alerta si el objeto permanece en la zona.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Otro",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "minimum_track_duration",
+       "value": "120000 ms: descarta lo que alguien deja un momento",
+       "valueSource": "propuesta"
+      }
+     ]
+    },
+    {
+     "analyticId": "stopped_object_detection",
+     "role": "opcional",
+     "note": "Para vehículos que frenan en la esquina a descargar.",
+     "params": [
+      {
+       "id": "object_types",
+       "value": "Vehículo",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "min_stop_duration",
+       "value": "20 s (por defecto 5)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "max_move_pixels",
+       "value": "70 px",
+       "valueSource": "default"
+      }
+     ]
+    },
+    {
+     "analyticId": "free_text_search_threshold",
+     "role": "verificación",
+     "note": "Solo forense: sirve para revisar grabaciones, no para alertas en tiempo real.",
+     "params": [
+      {
+       "id": "free_text_search_param",
+       "value": "pile of garbage bags on the street corner (en inglés)",
+       "valueSource": "propuesta"
+      },
+      {
+       "id": "similarity_filter",
+       "value": "Calibrar con video de prueba",
+       "valueSource": "propuesta"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trafico_contramano_ingresos",
+   "titleEs": "Tránsito: control de accesos, contramano y flujo vehicular",
+   "titleEn": "Traffic: access control, wrong-way and vehicle flow",
+   "category": "Tránsito y espacio público",
+   "descriptionEs": "Controlar el flujo de tránsito en accesos y egresos, detectar ingresos ilegales a zonas peatonales o vehículos circulando a contramano.",
+   "keywordsEs": [
+    "contramano",
+    "embotellamiento",
+    "acceso vehicular"
+   ],
+   "keywordsEn": [
+    "wrong way",
+    "traffic jam",
+    "vehicle access"
+   ],
+   "certainty": "sin valorar",
+   "certaintyNote": "Valores por cargar.",
+   "recommended": [
+    {
+     "analyticId": "line_crossing_detection",
+     "role": "principal",
+     "note": "",
+     "params": []
+    },
+    {
+     "analyticId": "tailgating_detection",
+     "role": "complementaria",
+     "note": "",
+     "params": []
+    },
+    {
+     "analyticId": "measure_vehicle_speed",
+     "role": "complementaria",
+     "note": "",
+     "params": []
+    },
+    {
+     "analyticId": "started_object_detection",
+     "role": "complementaria",
+     "note": "",
+     "params": []
+    },
+    {
+     "analyticId": "stopped_object_detection",
+     "role": "complementaria",
+     "note": "",
+     "params": []
+    }
+   ],
+   "keyParams": [
+    "line_cross_filter",
+    "movement_direction",
+    "use_bottom_reference_point",
+    "min_confidence"
+   ]
+  },
+  {
+   "id": "zonas_peligrosas_intrusion",
+   "titleEs": "Zonas peligrosas / intrusión en áreas restringidas",
+   "titleEn": "Hazardous zones / restricted-area intrusion",
+   "category": "Seguridad de Personas",
+   "descriptionEs": "Detectar presencia de personas en sectores críticos o restringidos.",
+   "keywordsEs": [
+    "intrusión",
+    "zona prohibida",
+    "perímetro"
+   ],
+   "keywordsEn": [
+    "intrusion",
+    "restricted area",
+    "perimeter"
+   ],
+   "certainty": "sin valorar",
+   "certaintyNote": "Valores por cargar.",
+   "recommended": [
+    {
+     "analyticId": "hazardous_area_detection",
+     "role": "principal",
+     "note": "",
+     "params": []
+    },
+    {
+     "analyticId": "loitering_detection",
+     "role": "complementaria",
+     "note": "",
+     "params": []
+    }
+   ],
+   "keyParams": [
+    "appear_filter",
+    "minimum_track_duration",
+    "zone_filter_without_sampling",
+    "max_parallel_tracks"
+   ]
+  },
+  {
+   "id": "aglomeraciones_eventos_publicos",
+   "titleEs": "Aglomeraciones y eventos públicos",
+   "titleEn": "Crowds and public events",
+   "category": "Seguridad de Personas",
+   "descriptionEs": "Detectar concentraciones de personas y medir su densidad en eventos o espacios públicos.",
+   "keywordsEs": [
+    "multitud",
+    "evento masivo",
+    "concentración de gente"
+   ],
+   "keywordsEn": [
+    "crowd",
+    "public event",
+    "mass gathering"
+   ],
+   "certainty": "sin valorar",
+   "certaintyNote": "Valores por cargar.",
+   "recommended": [
+    {
+     "analyticId": "crowd_detection",
+     "role": "principal",
+     "note": "",
+     "params": []
+    },
+    {
+     "analyticId": "heatmap",
+     "role": "complementaria",
+     "note": "",
+     "params": []
+    }
+   ],
+   "keyParams": [
+    "threshold_crowd",
+    "crowd_cooldown_filter",
+    "zone_filter_without_sampling"
+   ]
+  }
+ ]
+}
